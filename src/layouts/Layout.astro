@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/main.css';
 
 interface Props {
@@ -30,18 +31,13 @@ const {
 			content='#0071bb'
 		/>
 
-		<link
-			rel='preconnect'
-			href='https://fonts.googleapis.com'
+		<Font
+			cssVariable='--font-sora'
+			preload={[{ weight: '700' }]}
 		/>
-		<link
-			rel='preconnect'
-			href='https://fonts.gstatic.com'
-			crossorigin
-		/>
-		<link
-			href='https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap'
-			rel='stylesheet'
+		<Font
+			cssVariable='--font-manrope'
+			preload={[{ weight: '400' }]}
 		/>
 
 		<link

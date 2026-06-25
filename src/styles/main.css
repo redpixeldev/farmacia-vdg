@@ -4,8 +4,8 @@
 
 @theme {
 	--font-*: initial;
-	--font-heading: 'Sora', sans-serif;
-	--font-body: 'Manrope', sans-serif;
+	--font-heading: var(--font-sora), sans-serif;
+	--font-body: var(--font-manrope), sans-serif;
 
 	/* Exact brand colors from logo.svg */
 	--color-brand: #0071bb;
