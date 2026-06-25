@@ -80,6 +80,12 @@
 
 /* Swiper: behave as a 3-col grid on md+, carousel on small screens */
 @media (min-width: 768px) {
+	/* Swiper's bundle CSS sets overflow:hidden, which clips the card shadows
+	   (especially the bottom row). On md+ it's a static grid, so let them show. */
+	.services-swiper {
+		overflow: visible;
+	}
+
 	.services-swiper .swiper-wrapper {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
