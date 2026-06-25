@@ -1,0 +1,53 @@
+---
+import { site } from '../config';
+---
+
+<section
+	aria-labelledby='cta-title'
+	class='py-4'
+>
+	<div class='container'>
+		<div class='relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand via-brand-light to-brand-green px-6 py-10 sm:px-10 sm:py-12'>
+			<div class='relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between'>
+				<div class='max-w-xl text-white'>
+					<span class='inline-flex items-center gap-1.5 rounded-full bg-brand-red px-3 py-1 text-xs font-bold tracking-wide text-white uppercase'>
+						<svg
+							class='h-3.5 w-3.5'
+							viewBox='0 0 24 24'
+							fill='currentColor'
+							aria-hidden='true'><path d='M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7V3Z'></path></svg>
+						Aceptamos seguros / ARS
+					</span>
+					<h2
+						id='cta-title'
+						class='mt-4 text-2xl font-extrabold sm:text-3xl'
+					>
+						¿Buscas algo en específico?
+					</h2>
+					<p class='mt-2 text-white/90'>
+						Escríbenos por WhatsApp y te decimos si lo tenemos disponible.
+						Aceptamos seguros médicos / ARS.
+					</p>
+				</div>
+				<a
+					href={site.whatsapp.link}
+					target='_blank'
+					rel='noopener'
+					class='btn shrink-0 bg-white px-6 py-3.5 text-base text-brand hover:bg-white/90'
+				>
+					Preguntar ahora
+					<svg
+						class='h-5 w-5'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						stroke-width='2'
+						aria-hidden='true'><path
+							stroke-linecap='round'
+							stroke-linejoin='round'
+							d='M5 12h14M13 6l6 6-6 6'></path></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

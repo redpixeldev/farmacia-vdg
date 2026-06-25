@@ -4,34 +4,105 @@
 
 @theme {
 	--font-*: initial;
-	--font-heading: sans-serif;
-	--font-body: sans-serif;
+	--font-heading: 'Sora', sans-serif;
+	--font-body: 'Manrope', sans-serif;
 
-	--color-brand-primary: ;
-}
+	/* Exact brand colors from logo.svg */
+	--color-brand: #0071bb;
+	--color-brand-light: #0088cf;
+	--color-brand-green: #86bd40;
+	--color-brand-red: #ed2b2f;
 
-@utility container {
-	margin-inline: auto;
-	padding-inline: 1rem;
+	/* WhatsApp / positive actions */
+	--color-whatsapp: #25d366;
+	--color-whatsapp-dark: #1aa851;
+
+	/* Neutrals sampled from the design */
+	--color-ink: #15324b;
+	--color-ink-soft: #5a6b7b;
+	--color-surface: #f5f8fb;
+	--color-footer: #0f2233;
 }
 
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
-@utility btn {
-	@apply transition-colors duration-300 ease-linear;
+@utility container {
+	margin-inline: auto;
+	padding-inline: 1.25rem;
+	max-width: 75rem;
 }
 
-@utility btn-primary {
-	@apply bg-brand-primary text-white;
+@utility btn {
+	@apply inline-flex items-center justify-center gap-2 rounded-full font-heading font-semibold;
+	@apply transition-all duration-200 ease-out;
+}
+
+@utility btn-whatsapp {
+	@apply bg-whatsapp text-white shadow-sm hover:bg-whatsapp-dark;
+}
+
+@utility btn-outline {
+	@apply border border-slate-300 bg-white text-ink hover:border-brand hover:text-brand;
+}
+
+/* Eyebrow label above section titles */
+@utility eyebrow {
+	@apply inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-brand-red uppercase;
 }
 
 @layer base {
 	html {
-		@apply font-body antialiased;
+		@apply scroll-smooth font-body text-ink antialiased;
+	}
+
+	body {
+		@apply bg-surface;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-heading;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-brand);
+		outline-offset: 3px;
+		border-radius: 4px;
 	}
 
 	[x-cloak] {
 		@apply hidden!;
+	}
+}
+
+/* Swiper: behave as a 3-col grid on md+, carousel on small screens */
+@media (min-width: 768px) {
+	.services-swiper .swiper-wrapper {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem;
+		transform: none !important;
+	}
+
+	.services-swiper .swiper-slide {
+		width: auto !important;
+		height: auto;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
 	}
 }

@@ -1,1 +1,147 @@
-<div class='bg-blue-100'>header</div>
+---
+import { site } from '../config';
+import WhatsappIcon from './WhatsappIcon.astro';
+---
+
+<header
+	x-data='{ open: false, scrolled: false }'
+	x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 8)"
+	:class="scrolled ? 'shadow-md' : 'shadow-sm'"
+	class='sticky top-0 z-50 bg-white/95 backdrop-blur'
+>
+	<nav
+		class='container flex items-center justify-between gap-4 py-3'
+		aria-label='Navegación principal'
+	>
+		<a
+			href='#inicio'
+			class='shrink-0'
+			aria-label={`${site.name} — Inicio`}
+		>
+			<img
+				src='/img/logo.svg'
+				alt={site.name}
+				width='160'
+				height='44'
+				class='h-9 w-auto sm:h-10'
+			/>
+		</a>
+
+		<!-- Desktop nav -->
+		<ul class='hidden items-center gap-7 lg:flex'>
+			{
+				site.nav.map((item) => (
+					<li>
+						<a
+							href={item.href}
+							class='text-sm font-semibold text-ink transition-colors hover:text-brand-red'
+						>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<div class='flex items-center gap-3'>
+			<a
+				href={`tel:${site.phones[0].tel}`}
+				class='hidden items-center gap-2 text-sm font-bold text-brand md:flex'
+			>
+				<svg
+					class='h-4 w-4'
+					viewBox='0 0 24 24'
+					fill='currentColor'
+					aria-hidden='true'
+				>
+					<path d='M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.21 2.2Z'></path>
+				</svg>
+				{site.phones[0].display}
+			</a>
+
+			<a
+				href={site.whatsapp.link}
+				target='_blank'
+				rel='noopener'
+				class='btn btn-whatsapp hidden px-4 py-2.5 text-sm sm:inline-flex'
+			>
+				<WhatsappIcon class='h-4 w-4' />
+				Pedir por WhatsApp
+			</a>
+
+			<!-- Mobile toggle -->
+			<button
+				type='button'
+				class='inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink lg:hidden'
+				@click='open = !open'
+				:aria-expanded='open'
+				aria-controls='mobile-menu'
+				aria-label='Abrir menú'
+			>
+				<svg
+					x-show='!open'
+					class='h-6 w-6'
+					viewBox='0 0 24 24'
+					fill='none'
+					stroke='currentColor'
+					stroke-width='2'
+					aria-hidden='true'
+				>
+					<path
+						stroke-linecap='round'
+						d='M4 7h16M4 12h16M4 17h16'></path>
+				</svg>
+				<svg
+					x-show='open'
+					x-cloak
+					class='h-6 w-6'
+					viewBox='0 0 24 24'
+					fill='none'
+					stroke='currentColor'
+					stroke-width='2'
+					aria-hidden='true'
+				>
+					<path
+						stroke-linecap='round'
+						d='M6 6l12 12M18 6L6 18'></path>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	<!-- Mobile menu -->
+	<div
+		id='mobile-menu'
+		x-show='open'
+		x-cloak
+		x-transition.origin.top
+		class='border-t border-slate-100 bg-white lg:hidden'
+	>
+		<ul class='container flex flex-col py-2'>
+			{
+				site.nav.map((item) => (
+					<li>
+						<a
+							href={item.href}
+							@click='open = false'
+							class='block rounded-lg px-2 py-3 font-semibold text-ink hover:bg-surface hover:text-brand-red'
+						>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+			<li class='py-3'>
+				<a
+					href={site.whatsapp.link}
+					target='_blank'
+					rel='noopener'
+					class='btn btn-whatsapp w-full px-4 py-3'
+				>
+					<WhatsappIcon class='h-5 w-5' />
+					Pedir por WhatsApp
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
